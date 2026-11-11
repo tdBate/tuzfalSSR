@@ -9,7 +9,10 @@ export class AppController {
   @Get()
   @Render('index')
   async getHello() {
-    const tuzfalEntries: TuzfalEntry[] = await getTuzfalEntries();
+    const tuzfalEntries: TuzfalEntry[] = (await getTuzfalEntries())
+      .toSorted(
+        (a, b) => a.priority - b.priority
+      );
 
     return {
       data: tuzfalEntries
