@@ -25,3 +25,10 @@ export async function getTuzfalEntries() {
   const rows = results as TuzfalEntry[];
   return rows;
 }
+
+export async function postTuzfalEntry(item: TuzfalEntry) {
+  const [results] = await mysqlConnection.execute(
+    'INSERT INTO blocklist (id, priority, mac, enabled) VALUES (?, ?, ?, ?)',
+    [item.id, item.priority, item.mac, item.enabled]
+  );
+}

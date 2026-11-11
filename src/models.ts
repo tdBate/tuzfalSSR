@@ -4,3 +4,9 @@ export interface TuzfalEntry {
     mac: string;
     enabled: boolean;
 }
+
+export interface TuzfalDto {
+    priority: string;
+    mac: string;
+    enabled: string;
+}

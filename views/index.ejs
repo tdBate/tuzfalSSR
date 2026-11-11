@@ -11,6 +11,19 @@
 </head>
 
 <body>
+    <form action="index" method="post">
+        <label for="priority">Priority</label>
+        <input type="number" name="priority"><br>
+
+        <label for="mac">Mac</label>
+        <input type="text" name="mac"><br>
+
+        <label name="enabled" for="enabled">Enabled</label>
+        <input name="enabled" type="checkbox"><br>
+        <button type="submit">Elküld </button>
+
+    </form>
+
     <table>
         <% data.forEach(element=> {
             %> <tr>
