@@ -24,6 +24,10 @@
 
     </form>
 
+    <p>
+        <%= locals.success?"Sikeres feltöltés":locals.errorMessage %>
+    </p>
+
     <table>
         <% data.forEach(element=> {
             %> <tr>

@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, Render } from '@nestjs/common';
 import { AppService, getTuzfalEntries, postTuzfalEntry } from './app.service.js';
 import type { TuzfalDto, TuzfalEntry } from './models.js';
+import { error } from 'console';
 
 @Controller()
 export class AppController {
@@ -27,6 +28,15 @@ export class AppController {
         (a, b) => a.priority - b.priority
       );
 
+    const macRegex = / ^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}/;
+    if (macRegex.test(body.mac)) {
+      return {
+        data: await getTuzfalEntries(),
+        errorMessage: "Hibás mac cím",
+        success: false
+      }
+    }
+
     const tuzfal: TuzfalEntry = {
       id: Math.max(...tuzfalEntries.map(item => item.id)) + 1,
       priority: parseInt(body.priority),
@@ -36,6 +46,6 @@ export class AppController {
 
     await postTuzfalEntry(tuzfal);
 
-    return { data: await getTuzfalEntries() };
+    return { data: await getTuzfalEntries(), success: true };
   }
 }
