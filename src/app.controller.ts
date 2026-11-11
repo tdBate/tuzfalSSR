@@ -27,9 +27,11 @@ export class AppController {
 
   @Get()
   @Render('index')
-  getHello() {
+  async getHello() {
+    const tuzfalEntries: TuzfalEntry[] = await getTuzfalEntries();
+
     return {
-      data: getTuzfalEntries()
+      data: tuzfalEntries
     }
   }
 }

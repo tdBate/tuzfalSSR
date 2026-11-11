@@ -11,6 +11,24 @@
 </head>
 
 <body>
+    <table>
+        <% data.forEach(element=> {
+            %> <tr>
+                <td>
+                    <%= element.id %>
+                </td>
+                <td>
+                    <%= element.priority %>
+                </td>
+                <td>
+                    <%= element.mac %>
+                </td>
+                <td>
+                    <%= element.enabled %>
+                </td>
+            </tr>
+            <% }); %>
+    </table>
 </body>
 
 </html>
