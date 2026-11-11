@@ -28,6 +28,15 @@ export class AppController {
         (a, b) => a.priority - b.priority
       );
 
+    const priorityRegex = /-?[0-9]{1,}/;
+    if (!priorityRegex.test(body.mac)) {
+      return {
+        data: await getTuzfalEntries(),
+        errorMessage: "Hibás priority",
+        success: false
+      }
+    }
+
     const macRegex = / ^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}/;
     if (macRegex.test(body.mac)) {
       return {
